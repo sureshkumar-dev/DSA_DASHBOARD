@@ -1,15 +1,15 @@
 import { Layout } from '../components/Layout/Layout';
 import { useApp } from '../store/AppContext';
 import { ALL_LEVELS } from '../curriculum';
-import { BarChart3, CheckCircle, XCircle, Clock } from 'lucide-react';
+import { BarChart3, CheckCircle, Clock } from 'lucide-react';
 
 export function AnalyticsPage() {
   const { state } = useApp();
 
   // Aggregate stats
-  const totalPhases = ALL_LEVELS.reduce((sum, lvl) => sum + lvl.phases.length, 0);
-  const completedPhases = ALL_LEVELS.reduce((sum, lvl) => sum + lvl.phases.filter(p => {
-    // Phase completed if all mandatory topics and exercises done, and assessment (if any) passed
+  const totalPhases = ALL_LEVELS.reduce((acc, lvl) => acc + lvl.phases.length, 0);
+const completedPhases = ALL_LEVELS.reduce((acc, lvl) => {
+  const completed = lvl.phases.filter(p => {
     const topicsDone = p.topics.filter(t => t.mandatory).every(t => state.topics[t.id]?.completed);
     const exercisesDone = p.exercises.filter(e => e.mandatory).every(e => state.exercises[e.id]?.passed);
     let assessmentOk = true;
@@ -18,7 +18,9 @@ export function AnalyticsPage() {
       assessmentOk = !!rec && rec.bestScore >= 70;
     }
     return topicsDone && exercisesDone && assessmentOk;
-  }).length, sum);
+  }).length;
+  return acc + completed;
+}, 0);
 
   const totalExercises = ALL_LEVELS.reduce((sum, lvl) => sum + lvl.phases.reduce((s,p) => s + p.exercises.filter(e => e.mandatory).length,0),0);
   const passedExercises = Object.values(state.exercises).filter(e => e.passed).length;

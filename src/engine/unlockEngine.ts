@@ -1,5 +1,5 @@
 import type {
-  AppState, Level, LevelId, LevelUnlockStatus, UnlockRequirement,
+  AppState, LevelId, LevelUnlockStatus, UnlockRequirement,
   LevelProgressSummary
 } from '../types';
 import { ALL_LEVELS, LEVEL_ORDER } from '../curriculum';

@@ -1,6 +1,4 @@
-import type {
-  Level, Phase, Topic, Exercise, Assessment, QuizQuestion, TestCase
-} from '../types';
+import type { Level, Phase, Topic, Exercise, Assessment, QuizQuestion, TestCase, LevelId } from '../types';
 
 // ──────────────────────────────────────────────────────────────────────────────
 // HELPER BUILDERS

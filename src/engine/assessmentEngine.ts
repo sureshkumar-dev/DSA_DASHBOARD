@@ -56,8 +56,7 @@ function safeStringify(v: unknown): string {
 
 export function runCode(userCode: string, testCases: TestCase[]): RunResult {
   const results: TestResult[] = [];
-  let compiledFn: ((...args: unknown[]) => unknown) | null = null;
-  let compileError: string | undefined;
+
 
   // Try to extract a function from user code
   try {
