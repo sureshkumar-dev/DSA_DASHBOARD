@@ -1,9 +1,9 @@
 import { Layout } from '../components/Layout/Layout';
 import { useApp } from '../store/AppContext';
-import { Sun, Moon, CheckCircle, XCircle, Save } from 'lucide-react';
+import { Sun, Moon, XCircle } from 'lucide-react';
 
 export function SettingsPage() {
-  const { state, dispatch } = useApp();
+  const { dispatch } = useApp();
 
   // Placeholder toggles; actual implementation can be expanded
   const toggleTheme = () => {

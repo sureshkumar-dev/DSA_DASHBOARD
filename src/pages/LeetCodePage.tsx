@@ -1,9 +1,9 @@
 import { Layout } from '../components/Layout/Layout';
 import { useApp } from '../store/AppContext';
-import { BarChart3, XCircle, CheckCircle } from 'lucide-react';
+import { BarChart3 } from 'lucide-react';
 
 export function LeetCodePage() {
-  const { state, dispatch } = useApp();
+  const { state } = useApp();
   const problems = state.leetcodeProblems || [];
 
   const getStatusBadge = (status: string) => {

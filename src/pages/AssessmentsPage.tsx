@@ -98,7 +98,7 @@ export function AssessmentsPage() {
           )}
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {phaseAssessments.map(({ phase, assessment }) => {
+            {phaseAssessments.map(({ assessment }) => {
               const rec = state.assessments[assessment.id];
               const passed = rec?.passed;
               return (

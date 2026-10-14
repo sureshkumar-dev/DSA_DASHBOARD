@@ -58,56 +58,8 @@ export function runCode(userCode: string, testCases: TestCase[]): RunResult {
   const results: TestResult[] = [];
 
 
-  // Try to extract a function from user code
-  try {
-    // Support both function declarations and arrow functions assigned to const
-    const wrappedCode = `
-      // ── ListNode for linked list problems ──
-      class ListNode {
-        constructor(val, next = null) { this.val = val; this.next = next; }
-      }
-      // ── TreeNode for tree problems ──
-      class TreeNode {
-        constructor(val, left = null, right = null) { this.val = val; this.left = left; this.right = right; }
-      }
-      // ── Helper: build linked list from array ──
-      function buildList(arr) {
-        if (!arr || !arr.length) return null;
-        const head = new ListNode(arr[0]);
-        let curr = head;
-        for (let i = 1; i < arr.length; i++) { curr.next = new ListNode(arr[i]); curr = curr.next; }
-        return head;
-      }
-      // ── Helper: linked list to array ──
-      function listToArray(head) {
-        const result = [];
-        while (head) { result.push(head.val); head = head.next; }
-        return result;
-      }
-      // ── Helper: build tree from level-order array ──
-      function buildTree(arr) {
-        if (!arr || !arr.length || arr[0] === null) return null;
-        const root = new TreeNode(arr[0]);
-        const queue = [root]; let i = 1;
-        while (queue.length && i < arr.length) {
-          const node = queue.shift();
-          if (i < arr.length && arr[i] !== null) { node.left = new TreeNode(arr[i]); queue.push(node.left); } i++;
-          if (i < arr.length && arr[i] !== null) { node.right = new TreeNode(arr[i]); queue.push(node.right); } i++;
-        }
-        return root;
-      }
-      ${userCode}
-      // Return the first declared function
-      const __exports = {};
-      try { if (typeof evenOrOdd === 'function') __exports.fn = evenOrOdd; } catch(e){}
-      // Fallback: find any function in scope
-      return __exports;
-    `;
-    // We use a different simpler approach: eval the code in a sandboxed scope
-    compiledFn = null; // will be set per test case
-  } catch (e) {
-    compileError = String(e);
-  }
+// Simplified: no extraction block needed. Errors will be captured per test case.
+let compileError: string | undefined;
 
   for (const tc of testCases) {
     let actual = 'error';

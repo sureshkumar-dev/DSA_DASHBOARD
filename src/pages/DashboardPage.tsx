@@ -1,8 +1,8 @@
-import { useState } from 'react';
+
 import { Layout } from '../components/Layout/Layout';
 import { useApp } from '../store/AppContext';
 import { ALL_LEVELS, LEVEL_ORDER } from '../curriculum';
-import { Lock, CheckCircle, ArrowRight, ChevronDown, ChevronUp, Trophy } from 'lucide-react';
+import { Lock, ArrowRight, Trophy } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const LEVEL_COLORS: Record<string, string> = {

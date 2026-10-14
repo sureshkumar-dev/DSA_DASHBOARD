@@ -1,7 +1,7 @@
 import { Layout } from '../components/Layout/Layout';
 import { useApp } from '../store/AppContext';
 import { ALL_LEVELS } from '../curriculum';
-import { BarChart3, CheckCircle, Clock } from 'lucide-react';
+import { BarChart3 } from 'lucide-react';
 
 export function AnalyticsPage() {
   const { state } = useApp();
@@ -44,14 +44,14 @@ const completedPhases = ALL_LEVELS.reduce((acc, lvl) => {
           </div>
         </div>
         <div className="stat-card">
-          <div className="stat-icon green"><CheckCircle size={22} /></div>
+          <div className="stat-icon green"><BarChart3 size={22} /></div>
           <div>
             <div className="stat-card-value">{passedExercises}/{totalExercises}</div>
             <div className="stat-card-label">Exercises Passed</div>
           </div>
         </div>
         <div className="stat-card">
-          <div className="stat-icon amber"><Clock size={22} /></div>
+          <div className="stat-icon amber"><BarChart3 size={22} /></div>
           <div>
             <div className="stat-card-value">{passedAssessments}/{totalAssessments}</div>
             <div className="stat-card-label">Assessments Passed</div>

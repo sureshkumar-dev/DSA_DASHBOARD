@@ -1,9 +1,9 @@
 import { Layout } from '../components/Layout/Layout';
 import { useApp } from '../store/AppContext';
-import { Calendar, CheckCircle, XCircle } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 
 export function RevisionPage() {
-  const { state, dispatch } = useApp();
+  const { state } = useApp();
   const items = state.revisionItems || [];
 
   const getStatusBadge = (completed: boolean) => {

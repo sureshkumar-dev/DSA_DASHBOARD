@@ -10,7 +10,7 @@ import { useSearchParams } from 'react-router-dom';
 
 export function LearnPage() {
   const { state, dispatch, unlockStatus } = useApp();
-  const [params, setParams] = useSearchParams();
+  const [params] = useSearchParams();
   const [activeLevelId, setActiveLevelId] = useState<LevelId>(state.currentLevel);
   const [activePhaseId, setActivePhaseId] = useState<string | null>(null);
   const [activeTopic, setActiveTopic] = useState<Topic | null>(null);
