@@ -68,6 +68,54 @@ export function getLevelProgress(levelId: LevelId, state: AppState): LevelProgre
 
 export function calculateUnlockStatus(state: AppState): Record<LevelId, LevelUnlockStatus> {
   const result: Record<string, LevelUnlockStatus> = {};
+  for (const levelId of LEVEL_ORDER) {
+    result[levelId] = { levelId, unlocked: true, requirements: [] };
+  }
+  return result as Record<LevelId, LevelUnlockStatus>;
+}
+  const result: Record<string, LevelUnlockStatus> = {};
+  for (const levelId of LEVEL_ORDER) {
+    result[levelId] = { levelId, unlocked: true, requirements: [] };
+  }
+  return result as Record<LevelId, LevelUnlockStatus>;
+}
+  const result: Record<string, LevelUnlockStatus> = {};
+  for (const levelId of LEVEL_ORDER) {
+    result[levelId] = { levelId, unlocked: true, requirements: [] };
+  }
+  return result as Record<LevelId, LevelUnlockStatus>;
+}
+  const result: Record<string, LevelUnlockStatus> = {};
+  for (const levelId of LEVEL_ORDER) {
+    result[levelId] = { levelId, unlocked: true, requirements: [] };
+  }
+  return result as Record<LevelId, LevelUnlockStatus>;
+}
+  const result: Record<string, LevelUnlockStatus> = {};
+  for (const levelId of LEVEL_ORDER) {
+    result[levelId] = { levelId, unlocked: true, requirements: [] };
+  }
+  return result as Record<LevelId, LevelUnlockStatus>;
+}
+  const result: Record<string, LevelUnlockStatus> = {};
+  for (const levelId of LEVEL_ORDER) {
+    result[levelId] = { levelId, unlocked: true, requirements: [] };
+  }
+  return result as Record<LevelId, LevelUnlockStatus>;
+}
+  const result: Record<string, LevelUnlockStatus> = {};
+  for (const levelId of LEVEL_ORDER) {
+    result[levelId] = { levelId, unlocked: true, requirements: [] };
+  }
+  return result as Record<LevelId, LevelUnlockStatus>;
+}
+  const result: Record<string, LevelUnlockStatus> = {};
+  for (const levelId of LEVEL_ORDER) {
+    result[levelId] = { levelId, unlocked: true, requirements: [] };
+  }
+  return result as Record<LevelId, LevelUnlockStatus>;
+}
+  const result: Record<string, LevelUnlockStatus> = {};
 
   for (const levelId of LEVEL_ORDER) {
     const level = ALL_LEVELS.find(l => l.id === levelId)!;
