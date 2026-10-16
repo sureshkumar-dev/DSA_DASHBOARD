@@ -2,7 +2,6 @@ import type {
   AppState,
   LevelId,
   LevelUnlockStatus,
-  UnlockRequirement,
   LevelProgressSummary,
 } from '../types';
 
@@ -55,10 +54,10 @@ export function getLevelProgress(
     completedMandatoryTopics += topicsDone;
     passedMandatoryExercises += exercisesDone;
 
-    // Phase is complete when:
-    // 1. All mandatory topics are completed
-    // 2. All mandatory exercises are passed
-    // 3. Assessment is passed, if the phase has one
+    // Phase complete =
+    // all mandatory topics completed
+    // + all mandatory exercises passed
+    // + phase assessment passed (if it exists)
 
     let phaseAssessmentOk = true;
 
@@ -86,11 +85,11 @@ export function getLevelProgress(
   const finalScore =
     finalRec ? finalRec.bestScore : null;
 
-  // ── Overall Progress Calculation ────────────────────────────────────────────
+  // ── Overall Progress ────────────────────────────────────────────────────────
   //
-  // Topics      = 40%
-  // Exercises   = 40%
-  // Final Exam  = 20%
+  // Topics     = 40%
+  // Exercises  = 40%
+  // Final      = 20%
 
   const topicWeight =
     totalMandatoryTopics > 0
@@ -103,7 +102,7 @@ export function getLevelProgress(
       : 40;
 
   const finalWeight =
-    finalScore != null
+    finalScore !== null
       ? (finalScore / 100) * 20
       : 0;
 
@@ -133,15 +132,14 @@ export function getLevelProgress(
 
 // ── Unlock Engine ─────────────────────────────────────────────────────────────
 //
-// ALL COURSES ARE UNLOCKED.
+// ALL COURSES ARE ALWAYS UNLOCKED.
 //
-// No previous course completion is required.
-// No final assessment is required to access another course.
-// Progress and assessments inside each course still work normally.
+// Previous course completion is NOT required.
+// Previous final assessment is NOT required.
 //
 
 export function calculateUnlockStatus(
-  state: AppState
+  _state: AppState
 ): Record<LevelId, LevelUnlockStatus> {
   const result: Record<string, LevelUnlockStatus> = {};
 
@@ -156,11 +154,11 @@ export function calculateUnlockStatus(
   return result as Record<LevelId, LevelUnlockStatus>;
 }
 
-// ── Check Level Unlock ────────────────────────────────────────────────────────
+// ── Level Unlock Check ────────────────────────────────────────────────────────
 
 export function isLevelUnlocked(
-  levelId: LevelId,
-  state: AppState
+  _levelId: LevelId,
+  _state: AppState
 ): boolean {
   // Every course is always unlocked.
   return true;
@@ -168,7 +166,7 @@ export function isLevelUnlocked(
 
 // ── Next Required Action ─────────────────────────────────────────────────────
 //
-// This function still checks the user's progress INSIDE the course.
+// This controls progress INSIDE a course.
 // It does NOT control whether the course is unlocked.
 //
 
@@ -180,7 +178,8 @@ export function getNextRequiredAction(
     (l) => l.id === levelId
   )!;
 
-  // Check mandatory phases
+  // ── Mandatory Phases ───────────────────────────────────────────────────────
+
   for (const phase of level.phases) {
     if (!phase.mandatory) continue;
 
@@ -233,6 +232,6 @@ export function getNextRequiredAction(
     return `Pass: ${level.title} Final Assessment (need ${FINAL_PASS_MARK}%)`;
   }
 
-  // Everything is complete
+  // Course completely completed
   return null;
 }
